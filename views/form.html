@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+</head>
+<body>
+<form style="border: 1px solid red; width: 500px;">
+    <p>
+        <label for="name">Ho ten</label>
+        <input type="text" id="name">
+    </p>
+    <p>
+        <label for="name">Mat khau</label>
+        <input type="text" id="name">
+    </p>
+    <p>Gioi tinh
+        <input type="checkbox" id="gioitinh" checked>Nam
+    </p>
+    <p>Gioi tinh
+        <input type="radio" id="gioitinhnam" name="gt" checked>
+        <label for="gioitinhnam">Nam</label>
+        <input type="radio" id="gioitinhnu" name="gt">
+        <label for="gioitinhnu">Nu</label>
+        <input type="radio" id="gioitinhkhac" name="gt">
+        <label for="gioitinhkhac">Khac</label>
+    </p>
+    <p>
+        <!--xu li phia client-->
+        <input type="button" value="Dang ky">
+        <br>
+        <br>
+        <!--xu ly phia server-->
+        <input type="submit" value="Dang ky">
+    </p>
+    <p>
+        <label for="lylich">Ly lich</label>
+        <textarea name="" id="lylich" cols="30" rows="10"></textarea>
+    </p>
+    <p>
+        Nghe nghiep:
+        <select style="width: 250px;" name="" >
+            <option value="1">Giao vien</option>
+            <option value="2" selected>Kien truc su</option>
+            <option value="3">Sinh vien</option>
+        </select>
+    </p>
+    <p>
+        So thich:
+        <select name="" style="width: 250px" size="3" multiple>
+            <option value="1">Du lịch</option>
+            <option value="7" selected>Thể thao</option>
+            <option value="8">Chơi game</option>
+            <option value="9">Nấu ăn</option>
+        </select>
+    </p>
+</form>
+</body>
+</html>
