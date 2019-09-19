@@ -8,6 +8,19 @@
 <div>
     <ul id="animals"></ul>
 </div>
+<div class="taskCoderx">
+    <!--
+- Sử dụng getElementsByTagName() để lấy ra danh sách các <p> có class là 'foo'
+- Lặp qua các phần tử và thay đổi nội dung của từng phần tử bằng cách append (thêm vào cuối) một đường link tới coders.tokyo site
+-->
+    <p class="foo">foo1</p>
+    <p class="foo">foo2</p>
+    <p class="foo">foo3</p>
+    <p class="foo">foo4</p>
+    <p class="foo">foo5</p>
+    <p class="foo">foo6</p>
+
+</div>
 
 <script type="text/javascript">
     var animals = [
@@ -22,6 +35,14 @@
     var ulAnimals = document.getElementById("animals");
     console.log(listAnimals);
     ulAnimals.innerHTML = listAnimals.join("");
+
+    // task coderx
+    let fooList = document.getElementsByTagName("p");
+    console.log(fooList);
+    for (item of fooList){
+        item.innerHTML = item.textContent+'<a href="https://coders-x.com/"> CodersX</a>';
+    }
+
 </script>
 </body>
 </html>
