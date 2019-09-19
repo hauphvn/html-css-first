@@ -10,7 +10,7 @@
 
         <div class="col-sm-12 col-md-12">
             <input id="new-animal" type="text">
-            <button onclick="addAnimal()">Add</button>
+            <button id="btn-add">Add</button>
             <ul class="animals"></ul>
         </div>
     </div>
@@ -19,22 +19,28 @@
         <div class="col-sm-12 col-md-12">
            <h1>Task 01</h1>
             <p id="count"></p>
-            <button onclick="countFn()">Count</button>
+            <button id="btn-count">Count</button>
 
             <h1>Task 02</h1>
             <input type="text" id="searchBox" placeholder="Search..." />
             <button >Search</button>
-            <button onclick="clearValueSearch()">Clear</button>
+            <button id="btn-clear">Clear</button>
 
             <h1>Task 03</h1>
             <input id="name" type="text" placeholder="Enter your name">
-            <button onclick="sayHi()">Say Hi!</button>
+            <button id="btn-say-hi">Say Hi!</button>
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
     let animalArr = ['Dog','Cat'];
+    let addBtn = document.getElementById('btn-add');
+    let clearBtn = document.getElementById('btn-clear');
+    let sayHiBtn = document.getElementById('btn-say-hi');
+    addBtn.onclick = addAnimal;
+    clearBtn.onclick = clearValueSearch;
+    sayHiBtn.onclick = sayHi;
     function render(){
         let ulAnimal = document.getElementsByClassName("animals");
         let liArrAnimal = animalArr.map(function (item) {
