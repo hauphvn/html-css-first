@@ -5,3 +5,11 @@
 - To change default port to your port:
 ``static-server -p 5000`` (ex I want to change to 5000)  
 - If you want to use tunnel: let to see : ``ngrok`` keyword.  
+
+### Basic knowledge
+
+-   localStorage  
+Using save variable on browser.  
+    - set a item:``localStorage.setItem('key','value');``  
+    - get a item: ``localStorage.setItem('key');``
+    - 
