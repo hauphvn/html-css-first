@@ -5,6 +5,103 @@
     <title>Even Listener</title>
 </head>
 <body>
+<div class="container" style="text-align: center">
+    <div class="row">
+        <h1>Task 01</h1>
+        <div class="col-sm-12 col-md-12">
+            <form id="loginForm">
+                <div>
+                    <label for="username">Username</label>
+                    <input type="text" id="username">
+                </div>
 
+                <div>
+                    <label for="password">Password</label>
+                    <input type="password" id="password">
+                </div>
+
+                <div>
+                    <button type="submit">Submit</button>
+                    <button type="button" id="clearButton">Clear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <h1>Task 02</h1>
+        <div class="col-sm-12 col-md-12">
+            <input id="searchInput" type="text" placeholder="Search by phone number...">
+            <ul id="userList"></ul>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    //Task 01
+    // Viết code sao cho khi nhấn nút clear,
+    // nội dung của toàn bộ các field trong
+    // form có id là `loginForm` sẽ bị xoá (reset)
+    // Gợi ý: form element có method reset()
+    // dùng để xoá toàn bộ nội dung
+    // Tham khảo: https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement
+    let ipUsername = document.getElementById('username');
+    let ipPassword = document.getElementById('password');
+    let btnClear = document.getElementById('clearButton');
+    let formLogin = document.getElementById('loginForm');
+    btnClear.addEventListener('click',reset);
+
+    function reset(){
+        formLogin.reset();
+    }
+
+    //Task 02
+    var users = [
+        {
+            name: 'Thinh',
+            phone: '070123123'
+        },
+        {
+            name: 'Hung',
+            phone: '080456456'
+        },
+        {
+            name: 'Hoang',
+            phone: '090123123'
+        }
+    ];
+    var userList = document.getElementById('userList');
+    var searchInput = document.getElementById('searchInput');
+
+    function render(users){
+        let liUsers = users.map(function (item) {
+            return '<li>'+item.name+' - '+item.phone+'</li>';
+        });
+        userList.innerHTML = liUsers.join('');
+    }
+    render(users);
+
+    searchInput.addEventListener('keyup', function(event) {
+        // sự kiện 'change' chỉ xảy ra khi input bị mất focus
+        // sử dụng sự kiện keyup để tìm kiếm người dùng có
+        // số điện thoại khớp với nội dung tìm kiếm.
+        // Gợi ý:
+        // - biến value dưới đây là giá trị của input tại
+        // thời điểm gõ phím
+        // - sử dụng array.filter và string.indexOf để lọc
+        // users array, trả về những phần tử có số điện
+        // thoại chứa string lưu trong biến `value`
+        // Sử dụng Chrome Developer Tools để xem giá trị
+        // hiển thị ra sau mỗi lần gõ
+        var value = searchInput.value;
+        let resultSearch = users.filter(function(item){
+            if (item.phone.indexOf(value) !== -1){
+                return item;
+            }
+        });
+        render(resultSearch);
+    });
+</script>
 </body>
 </html>
