@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Event</title>
+</head>
+<body>
+<div class="container" style="text-align: center">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <h1>Filter students list by address</h1>
+            <span>Address: </span>
+            <select name="address" id="sl-address">
+            </select>
+            <ul id="students-list">
+
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var students = [
+        {name:'jack',district:11},
+        {name:'bob',district:11},
+        {name:'mary',district:12},
+        {name:'kim',district:10},
+        {name:'daisy',district:8},
+        {name:'alex',district:10},
+        {name:'man',district:9},
+        {name:'tom',district:9},
+    ];
+    const addresses = [1,2,3,4,6,7,8,9,10,11,12,];
+    let ulStudent = document.getElementById('students-list');
+    let slAddress = document.getElementById('sl-address');
+    slAddress.addEventListener('change',chooseAddress);
+    function render(students) {
+        let liStudents = students.map(function (item) {
+            return '<li>'+item.name+'-'+item.district+'</li>';
+        });
+
+        ulStudent.innerHTML = liStudents.join("");
+    }
+
+    function renderAddress(addressed) {
+        let opAddresses = addressed.map(function (item) {
+            return '<option>'+item+'</option>';
+        });
+        slAddress.innerHTML = opAddresses.join("");
+    }
+    renderAddress(addresses);
+
+    render(students);
+    function chooseAddress(event){
+        let studentFilter = students.filter(function (item) {
+            return item.district.toString() === event.target.value;
+        });
+        // console.log(studentFilter);
+        render(studentFilter);
+    }
+
+</script>
+</body>
+</html>
