@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "mock:api": "json-server --watch db.json --port 4000"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/hauphvn/html-css-first/issues"
   },
-  "homepage": "https://github.com/hauphvn/html-css-first#readme"
+  "homepage": "https://github.com/hauphvn/html-css-first#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "node.js": "0.0.0"
+  }
 }
