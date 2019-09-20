@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Basic Ajax</title>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <h1>Demo REST api </h1>
+    <table>
+      <td>
+        <div  style="border: 1px solid black;" class="col-sm-6 col-md-6">
+          <h4>GET</h4>
+          <ul id="tbUser"></ul>
+        </div>
+      </td>
+      <td >
+        <div class="col-sm-6 col-md-6" style="border: 1px solid gray;">
+          <h4>POST</h4>
+          <h5>Create a new user:</h5>
+          <label for="firstname">First name:</label>
+          <input type="text" id="firstname" placeholder="Tèo...">
+          <br>
+          <label for="lastname">Last name:</label>
+          <input type="text" id="lastname" placeholder="Nguyễn văn...">
+          <br>
+          <label for="email">Email:</label>
+          <input type="text" id="email" placeholder="nvteo@example.com">
+          <br>
+          <button type="button" id="btn-add">Add</button>
+        </div>
+      </td>
+      <td>
+        <div class="col-sm-6 col-md-6" style="border: 1px solid gray;">
+          <h4>PUT</h4>
+          <h5>Enter a first name to modify:</h5>
+          <label for="updateFirstName">First Name</label>
+          <input type="text" placeholder="tèo..." id="updateFirstName">
+          <ul id="ulFilterUser"></ul>
+          <h5>To update this user:</h5>
+          <label for="firstname">First name:</label>
+          <input type="text" id="upfirstname" placeholder="Tèo...">
+          <br>
+          <label for="lastname">Last name:</label>
+          <input type="text" id="uplastname" placeholder="Nguyễn văn...">
+          <br>
+          <label for="email">Email:</label>
+          <input type="text" id="upemail" placeholder="nvteo@example.com">
+          <br>
+          <button type="button" id="btn-update">Update</button>
+        </div>
+      </td>
+
+      <td>
+        <div class="col-sm-6 col-md-6" style="border: 1px solid gray;">
+          <h4>DELETE</h4>
+          <h5>Enter a first name to delete:</h5>
+          <label for="dldateFirstName">First Name</label>
+          <input type="text" placeholder="tèo..." id="dldateFirstName">
+          <ul id="dlFilterUser"></ul>
+          <h5>Do you want to delete this user:</h5>
+          <label for="dlfirstname">First name:</label>
+          <input type="text" id="dlfirstname" placeholder="Tèo...">
+          <br>
+          <label for="lastname">Last name:</label>
+          <input type="text" id="dllastname" placeholder="Nguyễn văn...">
+          <br>
+          <label for="dlemail">Email:</label>
+          <input type="text" id="dlemail" placeholder="nvteo@example.com">
+          <br>
+          <button type="button" id="btn-delete">Delete</button>
+        </div>
+      </td>
+
+    </table>
+  </div>
+</div>
+<script type="text/javascript">
+  // GET
+
+  var dataUsers = [];
+  let tbListUsers = document.getElementById('tbUser');
+  getUser();//Load from server
+
+  function renderListUser(dataUsers){
+    let ulUsers = dataUsers.map(function (item) {
+      return '<li>'+item.firstName+' '+item.lastName+  '-'+item.email+'</li>';
+    });
+    tbListUsers.innerHTML = ulUsers.join("");
+  }
+  async function getUser() {
+    try {
+      const res = await axios.get('http://localhost:4000/users');
+      dataUsers = res.data;
+      renderListUser(dataUsers);//Render users to table
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  // POST
+  let newFirstname = document.getElementById('firstname');
+  let newLastname = document.getElementById('lastname');
+  let newEmail = document.getElementById('email');
+  let btnAdd = document.getElementById('btn-add');
+  btnAdd.addEventListener('click',addingNewUser);
+
+
+  function addingNewUser() {
+    let tbListUsers = document.getElementById('tbUser');
+    axios({
+      method:'post',
+      url: 'http://localhost:4000/users',
+      data:{
+        // id: ++curId,
+        firstName: newFirstname.value,
+        lastName: newLastname.value,
+        email: newEmail.value
+      }
+    });
+
+    location.reload();
+  }
+
+  // PUT
+  let ulFilterUser = document.getElementById('ulFilterUser');
+  let inputSearchUpdate = document.getElementById('updateFirstName');
+  let btnUpdate = document.getElementById('btn-update');
+  btnUpdate.addEventListener('click', onUpdateUser);
+  let upFName = document.getElementById('upfirstname');
+  let upLName = document.getElementById('uplastname');
+  let upEmail = document.getElementById('upemail');
+  let idUser = 0;
+  inputSearchUpdate.addEventListener('keyup',function (event) {
+    let value = (inputSearchUpdate.value).toLowerCase();
+    let str = "";
+    let count = -1;
+    let linkPUT = "";
+    let listFilterUsers = dataUsers.map(function (item) {
+      if ((item.firstName).toLowerCase() === value){
+        return '<li style="cursor: pointer;" idUser="'+item.id+'" fName="'+item.firstName+'" lName="'+item.lastName+'" email="'+item.email+'">'+item.firstName+' '+item.lastName+  '-'+item.email+'</li>';
+      }
+    });
+    ulFilterUser.innerHTML = listFilterUsers.join("");
+  });
+  ulFilterUser.onclick = function(event) {
+    var target = getEventTarget(event);
+    idUser = parseInt(target.getAttribute('idUser'));
+    upFName.value = target.getAttribute('fName');
+    upLName.value = target.getAttribute('lName');
+    upEmail.value = target.getAttribute('email');
+    linkPUT = 'http://localhost:4000/users/'+idUser;
+
+  };
+
+  function onUpdateUser() {
+    axios.put(linkPUT, {
+      firstName: upFName.value,
+      lastName: upLName.value,
+      email: upEmail.value
+    }).then(resp => {
+      alert("Update success");
+      console.log(resp.data);
+    }).catch(error => {
+      alert("Update fail!");
+      console.log(error);
+    });
+  }
+
+  function getEventTarget(e) {
+    e = e || window.event;
+    return e.target || e.srcElement;
+  }
+
+  // DELETE
+
+  let dlFilterUser = document.getElementById('dlFilterUser');
+  let dlinputSearchUpdate = document.getElementById('dldateFirstName');
+  let btnDelete = document.getElementById('btn-delete');
+  btnDelete.addEventListener('click', onDeleteUser);
+  let dlFName = document.getElementById('dlfirstname');
+  let dlLName = document.getElementById('dllastname');
+  let dlEmail = document.getElementById('dlemail');
+  let idUserDelete = 0;
+  let linkDelete = "";
+  dlinputSearchUpdate.addEventListener('keyup',function (event) {
+    let value = (dlinputSearchUpdate.value).toLowerCase();
+    let dllistFilterUsers = dataUsers.map(function (item) {
+      if ((item.firstName).toLowerCase() === value){
+        return '<li style="cursor: pointer;" idUser="'+item.id+'" fName="'+item.firstName+'" lName="'+item.lastName+'" email="'+item.email+'">'+item.firstName+' '+item.lastName+  '-'+item.email+'</li>';
+      }
+    });
+    dlFilterUser.innerHTML = dllistFilterUsers.join("");
+  });
+  dlFilterUser.onclick = function(event) {
+    var target = dlgetEventTarget(event);
+    dlidUser = parseInt(target.getAttribute('idUser'));
+    dlFName.value = target.getAttribute('fName');
+    dlLName.value = target.getAttribute('lName');
+    dlEmail.value = target.getAttribute('email');
+    linkDelete = 'http://localhost:4000/users/'+dlidUser;
+
+  };
+
+  function onDeleteUser() {
+    axios.delete(linkDelete).then(resp => {
+      alert("Delete success");
+      console.log(resp.data);
+    }).catch(error => {
+      alert("Delete fail!");
+      console.log(error);
+    });
+  }
+
+  function dlgetEventTarget(e) {
+    e = e || window.event;
+    return e.target || e.srcElement;
+  }
+
+
+  // fetch('https://randomuser.me/api/').then(function (res) {
+  //     res.text().then(function (text) {
+  //         document.write(text);
+  //     })
+  // });
+
+  // Task 01
+  // 1. Sử dụng axios để tải nội dung dưới dạng json từ đường
+  // link sau về và hiển ra trình duyệt sử dụng document.write
+  // Link: https://randomuser.me/api/
+  // Có thể tìm link tới thư viện axios tại: https://cdnjs.com/
+  // Để thêm thư viện vào jsfiddle, nhấn vào Resources ở cột trái,
+  // nhập link vào rồi ấn (+)
+  // 2. Làm tương tự, thay vì dùng axios, hãy dùng fetch (google
+  // để biết cách dùng)
+
+  //Task 02
+  // 1. Tạo một REST api server sử dụng json-server
+  // 2. Đọc documentation của json-server và axios, tìm hiểu
+  // các method GET, POST, PUT, PATCH, DELETE
+  // 3. Làm các ví dụ sử dụng axios để gửi các request lên json-server
+  // để tạo object mới, update 1 object với dữ liệu mới, xoá 1 object
+  // Lưu ý: đây là một bài khó nếu bạn là beginner, tuy nhiên, khi hiểu
+  // được bài này bạn sẽ có thể lên 1 level mới (beginner cao cấp).
+  // Hãy dành 1 ngày để đọc, tìm hiểu, thử. Sau 1 ngày nếu bạn không làm
+  // được thì có thể hỏi trên Coders.Tokyo Slack hoặc JsLand.
+
+</script>
+
+
+</body>
+</html>

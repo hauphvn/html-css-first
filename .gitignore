@@ -2,3 +2,4 @@ materials/
 .idea/
 materials/
 node_modules/
+firebase-debug.log

@@ -23,3 +23,12 @@ Storing data during open a browser and end browser is closed.
 ### Fetch()
 - Similar creating a json server, you can use ``fetch()``.  
 Viewing at [here](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data) to more detail.  
+
+### Firebase
+1. Install: ``sudo npm install -g firebase-tools``
+2. Login: ``firebase login``
+3. Initialize: ``firebase init``
+4. Test at local: ``firebase serve``
+5. Deploy: ``firebase deploy``  
+
+### 
