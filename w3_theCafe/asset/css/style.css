@@ -1,0 +1,46 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+    background-color: #000;
+    height: 52px;
+}
+
+.header ul li {
+    line-height: calc(52px - 10px);
+    display: inline-block;
+    color: #fff;
+    width: calc((100% / 4) - 20px);
+    margin: 5px;
+    text-align: center;
+}
+
+.header ul li:hover {
+    background-color: #ccc;
+    color: #000;
+    cursor: pointer;
+    background-clip: content-box;
+}
+
+.banner {}
+
+.container {}
+
+.content {}
+
+.intro {}
+
+.menu {}
+
+.map {}
+
+.order {}
+
+.footer {}
