@@ -1,0 +1,126 @@
+:root {
+    --heightHeader: 46px;
+    --navHeight: 47px;
+    --mainColor: #f5f5f5;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+html {
+    font-family: Helvetica, sans-serif;
+    background-color: white;
+}
+
+#header {
+    background-color: #000;
+    height: var(--navHeight);
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
+
+#nav {
+    display: inline-block;
+}
+
+#nav,
+.sub-nav {
+    list-style-type: none;
+}
+
+#header .search-btn {
+    float: right;
+    line-height: var(--navHeight);
+    color: white;
+    padding: 0 21px
+}
+
+#header .search-btn:hover {
+    background-color: red;
+    cursor: pointer;
+}
+
+#header .search-icon {
+    font-weight: 900;
+}
+
+#nav ul li:hover {
+    background-color: #ccc;
+    cursor: pointer;
+    color: #000;
+}
+
+#nav .sub-nav {
+    top: 100%;
+    left: 0;
+    display: none;
+    position: absolute;
+    box-shadow: 0px 0px 5px #ccc;
+}
+
+#nav li:hover ul.sub-nav {
+    display: block;
+}
+
+#nav .sub-nav li:hover {
+    background-color: #ccc;
+}
+
+#nav .sub-nav li {
+    background-color: white;
+    color: #000;
+    text-transform: capitalize;
+    line-height: 2.5rem;
+    font-weight: 500;
+    min-width: 10rem;
+    text-align: left;
+    padding-left: 1rem;
+}
+
+#nav>ul>li {
+    color: white;
+    display: inline-block;
+    line-height: var(--navHeight);
+    width: 100px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    position: relative;
+}
+
+#search {}
+
+#slider {
+    background: url('https://picsum.photos/2000') top center / cover no-repeat;
+    margin-top: var(--heightHeader);
+    padding-top: 50%;
+    position: relative;
+}
+
+#slider .text-content {
+    position: absolute;
+    bottom: 47px;
+    color: white;
+    text-align: center;
+    /* //Canh giua 1 */
+    /* left: 50%;
+    transform: translateX(-50%); */
+    /* Canh giua 2 */
+    /* width: 100%; */
+    /* Canh giua cach 3 */
+    left: 0;
+    right: 0;
+}
+
+#content {
+    height: 2000px;
+}
+
+#contact {}
+
+#map {}
+
+#footer {}
