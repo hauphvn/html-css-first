@@ -265,6 +265,12 @@ html {
     background-color: black;
     color: #fff;
     padding: 7px 11px;
+    border: 0;
+}
+
+.address-info .ref-order:hover {
+    cursor: pointer;
+    opacity: .6;
 }
 
 #contact {}
@@ -277,7 +283,7 @@ html {
 /* Modal */
 
 #modal {
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     z-index: 2;
@@ -287,6 +293,10 @@ html {
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, .7);
+}
+
+.modal-open {
+    display: flex !important;
 }
 
 #modal .container {
