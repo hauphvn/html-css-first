@@ -47,20 +47,20 @@
                 Voluptatum impedit numquam sed omnis quas facere ullam minima totam provident aut, eius, eaque explicabo! Totam mollitia, asperiores fugiat debitis adipisci fugit.
             </div>
 
-            <div class="wrap-members">
-                <div class="member-item">
+            <div class="row wrap-members">
+                <div class="col col-third">
                     <div class="name">Name</div>
                     <div class="avatar">
                         <img src="https://loremflickr.com/800/800/man" alt="img-dog">
                     </div>
                 </div>
-                <div class="member-item">
+                <div class="col col-third">
                     <div class="name">Name</div>
                     <div class="avatar">
                         <img src="https://loremflickr.com/800/800/man" alt="img-dog">
                     </div>
                 </div>
-                <div class="member-item">
+                <div class="col col-third">
                     <div class="name">Name</div>
                     <div class="avatar">
                         <img src="https://loremflickr.com/800/800/man" alt="img-dog">
@@ -120,24 +120,61 @@
             </div>
         </div>
     </div>
-    <div id="contact"></div>
+    <div id="contact">
+        <div class="content-section">
+            <div class="section-title">CONTACT</div>
+            <div class="section-sub-title">Fan? Drop a note!</div>
+            <div class="contact-detail">
+                <div class="row">
+                    <div class="col col-second contact-info">
+                        <p><i class="ti-location-pin"></i>Chicago, US</p>
+                        <p><i class="ti-mobile"></i>Phone: +00 151515</p>
+                        <p> <i class="ti-email"></i>Email: mail@mail.com</p>
+                    </div>
+                    <div class="col col-second contact-form">
+                        <form>
+                            <div class="row">
+                                <div class="col col-second">
+                                    <input class="form-control" type="text " placeholder="Name">
+                                </div>
+                                <div class="col col-second">
+                                    <input class="form-control" type="email " placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="row mt-8">
+                                <div class="col col-single">
+                                    <input class="form-control" type="text " placeholder="Message">
+                                </div>
+                            </div>
+
+                            <div class="row mt-16">
+                                <div class="col col-single">
+                                    <input class="btn-action-form" value="SEND" type="submit">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="map"></div>
     <div id="footer"></div>
     <div id="modal">
-        <div class="container">
+        <div class="container js-modal-container">
             <header class="modal-header">
-                <i id="modal-close" class="ti-close js-close-modal"></i>
+                <i id="modal-close " class="ti-close js-close-modal"></i>
                 <div class="title"><i class="ti-bag"></i> Tickets</div>
             </header>
             <div class="modal-body">
                 <div class="item">
                     <label for="modal-quality"><i class="ti-shopping-cart"></i> Tickets, $15 per person</label>
-                    <input type="text" id="modal-quality" placeholder="How many?">
+                    <input type="text " id="modal-quality " placeholder="How many?">
                 </div>
 
                 <div class="item">
                     <label for="modal-email"><i class="ti-user"></i>  Send To</label>
-                    <input type="email" id="modal-email" placeholder="How many?">
+                    <input type="email " id="modal-email " placeholder="How many?">
                 </div>
 
                 <div class="item">
@@ -155,6 +192,7 @@
         const btnBuyTickets = document.querySelectorAll('.js-buy-ticket');
         const modal = document.querySelector('#modal');
         const btnCloseModals = document.querySelectorAll('.js-close-modal')
+        const modalContainer = document.querySelector('.js-modal-container');
 
         function showModalBuyTicket() {
             modal.classList.add('modal-open');
@@ -163,6 +201,12 @@
         function hideModalBuyTicket() {
             modal.classList.remove('modal-open');
         }
+
+        modalContainer.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
+
+        modal.addEventListener('click', hideModalBuyTicket);
 
         for (const btnBuy of btnBuyTickets) {
             btnBuy.addEventListener('click', showModalBuyTicket);

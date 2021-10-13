@@ -10,9 +10,61 @@
     box-sizing: border-box;
 }
 
-html {
-    font-family: Helvetica, sans-serif;
-    background-color: white;
+
+/* Common */
+
+.btn-action-form {
+    width: 5rem;
+    height: 2rem;
+    border: 0px;
+    color: #fff;
+    background-color: #000;
+}
+
+.btn-action-form:hover {
+    cursor: pointer;
+}
+
+.mt-8 {
+    margin-top: 8px!important;
+}
+
+.mt-16 {
+    margin-top: 16px!important;
+}
+
+.form-control {
+    padding: 9px 5px;
+    width: 100%;
+}
+
+.row {
+    margin-left: -8px;
+    margin-right: -8px;
+}
+
+.row::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.col {
+    float: left;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.col-single {
+    width: 100%;
+}
+
+.col-third {
+    width: 33.33333%;
+}
+
+.col-second {
+    width: 50%;
 }
 
 .clear {
@@ -21,6 +73,18 @@ html {
 
 .text-white {
     color: #fff !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+
+/* Main */
+
+html {
+    font-family: Helvetica, sans-serif;
+    background-color: white;
 }
 
 #header {
@@ -127,21 +191,22 @@ html {
 
 #content {}
 
-#content .content-section {
+.content-section {
     width: 800px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
-#content .section-title {
+.section-title {
     font-weight: 500;
     font-size: 20px;
     letter-spacing: 4px;
 }
 
-#content .section-sub-title {
+.section-sub-title {
     font-style: italic;
     font-size: 12px;
     padding-bottom: 1rem;
@@ -156,12 +221,7 @@ html {
 
 .wrap-members {
     margin-bottom: 3rem;
-}
-
-.wrap-members .member-item {
-    float: left;
-    width: calc(100% / 3);
-    padding: 1rem;
+    margin-top: 3rem;
 }
 
 .wrap-members .name {
@@ -170,6 +230,7 @@ html {
 
 .wrap-members .avatar {
     width: 100%;
+    padding: 0 3rem
 }
 
 .wrap-members .avatar img {
@@ -275,6 +336,25 @@ html {
 
 #contact {}
 
+#contact .contact-form {
+    text-align: left;
+}
+
+#contact .col-single {
+    display: inline-block;
+    text-align: right;
+}
+
+#contact .contact-info {
+    text-align: left;
+}
+
+#contact .contact-info i[class*='ti-'] {
+    font-weight: 600;
+    width: 26px;
+    display: inline-block;
+}
+
 #map {}
 
 #footer {}
@@ -304,6 +384,8 @@ html {
     background-color: #fff;
     width: 100%;
     max-width: calc(100% - 32px);
+    animation: modalFadeIn ease .6s;
+    /* animation: modalFadeOut ease .6s; */
 }
 
 #modal #modal-close {
@@ -386,4 +468,29 @@ html {
 .modal-footer .footer-close:hover {
     cursor: pointer;
     opacity: .7;
+}
+
+
+/* Keyframe */
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-150px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes modalFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-1000px);
+        opacity: 0;
+    }
 }
