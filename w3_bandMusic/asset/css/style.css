@@ -13,7 +13,11 @@
 
 /* Common */
 
-.btn-action-form {
+a {
+    text-decoration: none;
+}
+
+.btn {
     width: 5rem;
     height: 2rem;
     border: 0px;
@@ -21,16 +25,17 @@
     background-color: #000;
 }
 
-.btn-action-form:hover {
+.btn:hover {
     cursor: pointer;
+    opacity: .6;
 }
 
 .mt-8 {
-    margin-top: 8px!important;
+    margin-top: 8px !important;
 }
 
 .mt-16 {
-    margin-top: 16px!important;
+    margin-top: 16px !important;
 }
 
 .form-control {
@@ -83,6 +88,7 @@
 /* Main */
 
 html {
+    scroll-behavior: smooth;
     font-family: Helvetica, sans-serif;
     background-color: white;
 }
@@ -94,6 +100,7 @@ html {
     position: fixed;
     top: 0;
     z-index: 1;
+    overflow: hidden;
 }
 
 #nav {
@@ -105,11 +112,27 @@ html {
     list-style-type: none;
 }
 
+#header .mobile-menu-btn {
+    display: none;
+}
+
 #header .search-btn {
     float: right;
     line-height: var(--navHeight);
     color: white;
     padding: 0 21px
+}
+
+#header .mobile-menu-btn {
+    float: right;
+    line-height: var(--navHeight);
+    color: white;
+    padding: 0 21px
+}
+
+#header .mobile-menu-btn:hover {
+    background-color: #ccc;
+    color: #000;
 }
 
 #header .search-btn:hover {
@@ -193,11 +216,14 @@ html {
 
 .content-section {
     width: 800px;
+    max-width: 100%;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2rem;
     margin-bottom: 2rem;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 .section-title {
@@ -281,9 +307,7 @@ html {
     margin-right: -8px;
 }
 
-.wrap-order-address .adress-item {
-    width: calc(100% / 3);
-    float: left;
+.adress-item {
     padding: 4px 8px;
 }
 
@@ -321,19 +345,6 @@ html {
     padding-bottom: 1rem;
 }
 
-.address-info .ref-order {
-    text-decoration: none;
-    background-color: black;
-    color: #fff;
-    padding: 7px 11px;
-    border: 0;
-}
-
-.address-info .ref-order:hover {
-    cursor: pointer;
-    opacity: .6;
-}
-
 #contact {}
 
 #contact .contact-form {
@@ -355,9 +366,20 @@ html {
     display: inline-block;
 }
 
-#map {}
+#map img {
+    width: 100%;
+}
 
-#footer {}
+#footer {
+    text-align: center;
+    margin: 5rem 0;
+    letter-spacing: 5px;
+}
+
+#footer a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, .6)
+}
 
 
 /* Modal */
@@ -492,5 +514,31 @@ html {
     to {
         transform: translateY(-1000px);
         opacity: 0;
+    }
+}
+
+
+/* For PC >= 1024px */
+
+@media only screen and (min-width: 1024px) {}
+
+
+/* For table 740 <= width < 1024 */
+
+@media only screen and (min-width: 740px) and (max-width: 1023px) {}
+
+
+/* For mobile width < 740px */
+
+@media only screen and (max-width: 739px) {
+    #nav>ul>li {
+        display: block;
+        height: auto; 
+    }
+    #header .search-btn {
+        display: none;
+    }
+    #header .mobile-menu-btn {
+        display: inline-block;
     }
 }

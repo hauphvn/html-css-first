@@ -14,10 +14,10 @@
     <div id="header">
         <div id="nav">
             <ul>
-                <li>Home</li>
-                <li>Band</li>
-                <li>Tour</li>
-                <li>contact</li>
+                <li><a class="text-white" href="#">Home</a></li>
+                <li><a class="text-white" href="#band">Band</a></li>
+                <li><a class="text-white" href="#tour">Tour</a></li>
+                <li><a class="text-white" href="#contact">contact</a></li>
                 <li>more <i class="ti-angle-down"></i>
                     <ul class="sub-nav">
                         <li>Merchandise</li>
@@ -30,6 +30,9 @@
         <div class="search-btn">
             <i class="search-icon ti-search"></i>
         </div>
+        <div id="js-mobile-menu-btn" class="mobile-menu-btn">
+            <i class="menu-icon ti-menu"></i>
+        </div>
     </div>
     <div id="slider">
         <div class="text-content">
@@ -38,7 +41,7 @@
         </div>
     </div>
     <div id="content">
-        <div class="content-section">
+        <div id="band" class="content-section">
             <div class="section-title">THE BAND</div>
             <div class="section-sub-title">We are love music</div>
             <div class="about-content">
@@ -69,7 +72,7 @@
                 <div class="clear"></div>
             </div>
         </div>
-        <div class="tour-section">
+        <div id="tour" class="tour-section">
             <div class="content-section">
                 <div class="section-title text-white">TOUR DATES</div>
                 <div class="section-sub-title">Remember to book your tickets!</div>
@@ -81,8 +84,8 @@
                         <li>November <span class="quality">3</span></li>
                     </ul>
                 </div>
-                <div class="wrap-order-address">
-                    <div class="adress-item">
+                <div class="row">
+                    <div class="col col-third adress-item">
                         <div class="address-image">
                             <img src="https://loremflickr.com/800/800/city" alt="city">
                         </div>
@@ -90,10 +93,10 @@
                             <p class="name">New York</p>
                             <p class="date-time">Fri 27 Nov 2016</p>
                             <p class="desc">Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-                            <button class="ref-order js-buy-ticket" href="#">Buy Tickets</button>
+                            <button class="btn js-buy-ticket" href="#">Buy Tickets</button>
                         </div>
                     </div>
-                    <div class="adress-item">
+                    <div class="col col-third adress-item">
                         <div class="address-image">
                             <img src="https://loremflickr.com/800/800/city" alt="city">
                         </div>
@@ -101,10 +104,10 @@
                             <p class="name">Paris</p>
                             <p class="date-time">Fri 27 Nov 2016</p>
                             <p class="desc">Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-                            <button class="ref-order js-buy-ticket" href="#">Buy Tickets</button>
+                            <button class="btn js-buy-ticket" href="#">Buy Tickets</button>
                         </div>
                     </div>
-                    <div class="adress-item">
+                    <div class="col col-third adress-item">
                         <div class="address-image">
                             <img src="https://loremflickr.com/800/800/city" alt="city">
                         </div>
@@ -112,10 +115,9 @@
                             <p class="name">San Francisco</p>
                             <p class="date-time">Sat 28 Nov 2016</p>
                             <p class="desc">Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-                            <button class="ref-order js-buy-ticket" href="#">Buy Tickets</button>
+                            <button class="btn ref-order js-buy-ticket" href="#">Buy Tickets</button>
                         </div>
                     </div>
-                    <div class="clear"></div>
                 </div>
             </div>
         </div>
@@ -149,7 +151,7 @@
 
                             <div class="row mt-16">
                                 <div class="col col-single">
-                                    <input class="btn-action-form" value="SEND" type="submit">
+                                    <input class="btn" value="SEND" type="submit">
                                 </div>
                             </div>
                         </form>
@@ -158,8 +160,16 @@
             </div>
         </div>
     </div>
-    <div id="map"></div>
-    <div id="footer"></div>
+    <div id="map">
+        <img src="./asset/img/kaykafe-map.png" alt="kakafe-map">
+    </div>
+    <div id="footer">
+        <a href="#"><i class="ti-facebook"></i></a>
+        <a href="#"><i class="ti-youtube"></i></a>
+        <a href="#"><i class="ti-pinterest"></i></a>
+        <a href="#"><i class="ti-twitter"></i></a>
+        <p>KAYKAFE</p>
+    </div>
     <div id="modal">
         <div class="container js-modal-container">
             <header class="modal-header">
@@ -193,6 +203,22 @@
         const modal = document.querySelector('#modal');
         const btnCloseModals = document.querySelectorAll('.js-close-modal')
         const modalContainer = document.querySelector('.js-modal-container');
+        const mobielMenuBtn = document.getElementById('js-mobile-menu-btn');
+        const mainHeader = document.getElementById('header');
+        const listItemNavigations = document.querySelectorAll('#nav ul li a[href*="#"]');
+        let isClickedMenuIcon = false;
+        console.log(listItemNavigations);
+        // Mobile action 
+        mobielMenuBtn.addEventListener('click', () => {
+            if (!!mainHeader) {
+                if (!isClickedMenuIcon) {
+                    mainHeader.style.height = 'auto';
+                } else {
+                    mainHeader.style.height = null;
+                }
+                isClickedMenuIcon = !isClickedMenuIcon;
+            }
+        });
 
         function showModalBuyTicket() {
             modal.classList.add('modal-open');
