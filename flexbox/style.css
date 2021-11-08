@@ -1,0 +1,44 @@
+.main-container {
+    border: 1px solid black;
+    height: 500px;
+    display: flex;
+    /* Cho phep item con xuong dong */
+    flex-wrap: wrap;
+    /* Set chieu rong cho item con */
+    /* flex-basis: 10px; */
+    /* Can theo truc chinh: main axis */
+    justify-content: center;
+    /* Can theo truc vuong goc voi truc chinh: cross axis */
+    align-content: flex-start;
+    /* flex-grow: 100px; */
+}
+
+.item {
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+    min-width: 100px;
+    min-height: 10px;
+    background-color: red;
+}
+
+
+/* CSS nav */
+
+.nav {
+    color: white;
+    display: flex;
+    background-color: #f44336;
+    justify-content: space-between;
+}
+
+.nav .nav-list {
+    display: flex;
+}
+
+.nav-list .nav-item {
+    padding: 5px 8px;
+}
+
+
+/* End css nav */
