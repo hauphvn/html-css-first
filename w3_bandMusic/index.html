@@ -18,11 +18,14 @@
                 <li><a class="text-white" href="#band">Band</a></li>
                 <li><a class="text-white" href="#tour">Tour</a></li>
                 <li><a class="text-white" href="#contact">contact</a></li>
-                <li>more <i class="ti-angle-down"></i>
+                <li>
+                    <a class="text-white" href="#">More
+                        <i class="ti-angle-down"></i>
+                    </a>
                     <ul class="sub-nav">
-                        <li>Merchandise</li>
-                        <li>Extras</li>
-                        <li>Media</li>
+                        <li><a class="text-white" href="#">Merchandise</a></li>
+                        <li><a class="text-white" href="#">Extras</a></li>
+                        <li><a class="text-white" href="#">Media</a></li>
                     </ul>
                 </li>
             </ul>
@@ -51,19 +54,19 @@
             </div>
 
             <div class="row wrap-members">
-                <div class="col col-third">
+                <div class="col col-third s-col-full">
                     <div class="name">Name</div>
                     <div class="avatar">
                         <img src="https://loremflickr.com/800/800/man" alt="img-dog">
                     </div>
                 </div>
-                <div class="col col-third">
+                <div class="col col-third s-col-full">
                     <div class="name">Name</div>
                     <div class="avatar">
                         <img src="https://loremflickr.com/800/800/man" alt="img-dog">
                     </div>
                 </div>
-                <div class="col col-third">
+                <div class="col col-third s-col-full">
                     <div class="name">Name</div>
                     <div class="avatar">
                         <img src="https://loremflickr.com/800/800/man" alt="img-dog">
@@ -85,7 +88,7 @@
                     </ul>
                 </div>
                 <div class="row">
-                    <div class="col col-third adress-item">
+                    <div class="col col-third adress-item s-col-full">
                         <div class="address-image">
                             <img src="https://loremflickr.com/800/800/city" alt="city">
                         </div>
@@ -96,7 +99,7 @@
                             <button class="btn js-buy-ticket" href="#">Buy Tickets</button>
                         </div>
                     </div>
-                    <div class="col col-third adress-item">
+                    <div class="col col-third adress-item s-col-full">
                         <div class="address-image">
                             <img src="https://loremflickr.com/800/800/city" alt="city">
                         </div>
@@ -107,7 +110,7 @@
                             <button class="btn js-buy-ticket" href="#">Buy Tickets</button>
                         </div>
                     </div>
-                    <div class="col col-third adress-item">
+                    <div class="col col-third adress-item s-col-full">
                         <div class="address-image">
                             <img src="https://loremflickr.com/800/800/city" alt="city">
                         </div>
@@ -128,18 +131,18 @@
             <div class="section-sub-title">Fan? Drop a note!</div>
             <div class="contact-detail">
                 <div class="row">
-                    <div class="col col-second contact-info">
+                    <div class="col col-second contact-info s-col-full">
                         <p><i class="ti-location-pin"></i>Chicago, US</p>
                         <p><i class="ti-mobile"></i>Phone: +00 151515</p>
                         <p> <i class="ti-email"></i>Email: mail@mail.com</p>
                     </div>
-                    <div class="col col-second contact-form">
+                    <div class="col col-second contact-form s-col-full">
                         <form>
                             <div class="row">
-                                <div class="col col-second">
+                                <div class="col col-second s-col-full">
                                     <input class="form-control" type="text " placeholder="Name">
                                 </div>
-                                <div class="col col-second">
+                                <div class="col col-second s-col-full">
                                     <input class="form-control" type="email " placeholder="Email">
                                 </div>
                             </div>
@@ -205,19 +208,34 @@
         const modalContainer = document.querySelector('.js-modal-container');
         const mobielMenuBtn = document.getElementById('js-mobile-menu-btn');
         const mainHeader = document.getElementById('header');
-        const listItemNavigations = document.querySelectorAll('#nav ul li a[href*="#"]');
+        const listItemNavigations = document.querySelectorAll('li a[href*="#"]');
         let isClickedMenuIcon = false;
-        console.log(listItemNavigations);
         // Mobile action 
         mobielMenuBtn.addEventListener('click', () => {
             if (!!mainHeader) {
                 if (!isClickedMenuIcon) {
                     mainHeader.style.height = 'auto';
+                    isClickedMenuIcon = true;
                 } else {
                     mainHeader.style.height = null;
+                    isClickedMenuIcon = false;
                 }
-                isClickedMenuIcon = !isClickedMenuIcon;
             }
+        });
+
+        listItemNavigations.forEach(item => {
+            item.addEventListener('click', (event) => {
+                if (item.nextElementSibling) {
+                    console.log(item);
+                    event.preventDefault();
+                    mainHeader.style.overflow = "visible";
+                } else {
+                    console.log('else ', item);
+                    mainHeader.style.height = null;
+                    mainHeader.style.overflow = "hidden";
+                }
+                isClickedMenuIcon = false;
+            });
         });
 
         function showModalBuyTicket() {
